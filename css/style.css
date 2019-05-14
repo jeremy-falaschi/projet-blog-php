@@ -1,0 +1,7 @@
+body {width: 100%;}
+
+.title-home h1, .title-home p {text-align: center;}
+
+footer { background: linear-gradient(rgba(52,58,64,1), rgba(52,58,64,0.3));}
+footer .bloc_footer {text-align: center;}
+footer h2 {color: rgb(180, 175, 175);}
