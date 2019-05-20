@@ -40,7 +40,7 @@
             <div class="bloc_article">
                 <h2><?= $donnees['titre']; ?></h2>
                 <div class="contenu"><?= $donnees['contenu']; ?></div>
-                <p class="date_article">Publié le : <?= $donnees['date_article_fr']; ?></p>
+                <div class="date_lien"><p class="date_article">Publié le : <?= $donnees['date_article_fr']; ?> </p><a href="#">Voir plus</a></div>
 
             </div>
             <?php } ?>
