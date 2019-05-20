@@ -2,6 +2,9 @@
  try
  {
      $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'phpmyadminsecure166');
+     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+     $reponse = $bdd->query('SELECT contenu, titre, DATE_FORMAT(date_article, \'%d/%m/%Y à %Hh%imin%ss\') AS date_article_fr FROM article ORDER BY id DESC');
  } 
  catch(Exception $e)
  {
@@ -25,15 +28,25 @@
 <body>
 <?php include("menu.php"); ?>
 
-<section>
-<div class="Container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 title-home">
-            <h1>Un billet simple pour l'alaska</h1>
-            <p>Retrouvez tous les chapitres ci-dessous</p>
+<section class="main">
+    <div class="Container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 title-home">
+                <h1>Un billet simple pour l'alaska</h1>
+                <p>Retrouvez tous les chapitres ci-dessous</p>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <?php while($donnees = $reponse->fetch()){ ?>
+            <div class="bloc_article">
+                <h2><?= $donnees['titre']; ?></h2>
+                <div class="contenu"><?= $donnees['contenu']; ?></div>
+                <p class="date_article">Publié le : <?= $donnees['date_article_fr']; ?></p>
+
+            </div>
+            <?php } ?>
+            </div>    
         </div>
     </div>
-</div>
 </section>
 
 <?php include("footer.php"); ?>
