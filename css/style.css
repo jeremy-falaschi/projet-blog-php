@@ -9,7 +9,7 @@ body {min-height: 100%; margin: 0; padding: 0; width: 100%; position: relative;}
 .bloc_article .contenu {padding: 2% 5% 2% 5%; width: 90%; margin: auto; background-color: rgb(192, 198, 204); border-radius: 5px; height: 500px; overflow-y: hidden; text-align: justify;}
 .bloc_article .date_article {text-align: center; color: rgb(243, 215, 215)}
 .bloc_article .date_lien {display: flex; justify-content: space-between; padding: 0 10%;}
-
+.block_alert {color: red;}
 
 .title-home h1, .title-home p {text-align: center;}
 

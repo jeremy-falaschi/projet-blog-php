@@ -4,7 +4,7 @@
      $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'phpmyadminsecure166');
      $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-     $reponse = $bdd->query('SELECT contenu, titre, DATE_FORMAT(date_article, \'%d/%m/%Y à %Hh%imin%ss\') AS date_article_fr FROM article ORDER BY id DESC');
+     $reponse = $bdd->query('SELECT id, contenu, titre, DATE_FORMAT(date_article, \'%d/%m/%Y à %Hh%imin%ss\') AS date_article_fr FROM article ORDER BY id DESC');
  } 
  catch(Exception $e)
  {
@@ -40,7 +40,7 @@
             <div class="bloc_article">
                 <h2><?= $donnees['titre']; ?></h2>
                 <div class="contenu"><?= $donnees['contenu']; ?></div>
-                <div class="date_lien"><p class="date_article">Publié le : <?= $donnees['date_article_fr']; ?> </p><a href="#">Voir plus</a></div>
+                <div class="date_lien"><p class="date_article">Publié le : <?= $donnees['date_article_fr']; ?> </p><a href="article.php?id=<?= $donnees['id']; ?>">Voir plus</a></div>
 
             </div>
             <?php } ?>

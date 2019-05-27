@@ -1,3 +1,23 @@
+<?php
+ try
+ {
+     $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'phpmyadminsecure166');
+     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    
+     
+ } 
+ catch(Exception $e)
+ {
+         die('Erreur : '.$e->getMessage());
+ }
+
+ $reponse = $bdd->query('SELECT contenu, titre, DATE_FORMAT(date_article, \'%d/%m/%Y à %Hh%imin%ss\') AS date_article_fr FROM article WHERE id = "' . $_GET['id']. '"');
+ $donnees = $reponse->fetch();
+ 
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,10 +35,14 @@
 <body>
     <?php include('menu.php'); ?>
 
-    <section class="bloc_article">
+    <section>
         <div class="container">
             <div class="row">
                 <div class="article">
+                    <h1><?= $donnees['titre']; ?></h1>
+                    <p>Publié le : <?= $donnees['date_article_fr']; ?> </p>
+
+                    <div class="contenu_article"><?= $donnees['contenu']; ?></div>
 
                 </div>
                 <div class="commentaire">

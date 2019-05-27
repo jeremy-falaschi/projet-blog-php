@@ -4,15 +4,35 @@ try
     $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'phpmyadminsecure166');
     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    if (!empty($_POST['submit'])){
-        $req = $bdd->prepare('INSERT INTO article (contenu, titre, date_article) VALUES( ?, ?, NOW())');
-        $req->execute(array($_POST['contenu'], $_POST['titre']));
-    }
+    
 } 
 catch(Exception $e)
 {
     die('Erreur : '.$e->getMessage());
 }
+
+if (!empty($_POST)){
+    $valide = true;
+    if(empty($_POST['titre'])){
+        $alerterror = 'le titre est obligatoire';
+        $valide = false;
+    } elseif (strlen($_POST['titre']) < 8) {
+        $alerterror = 'le titre est trop court';
+        $valide = false;
+    }
+
+    if (empty($_POST['contenu'])) {
+        $alerterror = 'le contenu est vide';
+        $valide = false;
+    }
+
+    if ($valide === true) {
+        $req = $bdd->prepare('INSERT INTO article (contenu, titre, date_article) VALUES( ?, ?, NOW())');
+        $req->execute(array($_POST['contenu'], $_POST['titre']));
+    }
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +58,7 @@ catch(Exception $e)
         
         <form action="ajouter_article.php" method="POST">
             <label for="">Titre du chapitre: </label><input type="text" class="titre" name="titre" placeholder="Titre">
+            <?php if(isset($alerterror)){ echo '<p class="block_alert">' . $alerterror . '</p>';} ?>
             <textarea name="contenu"></textarea>
             <input type="submit" name="submit" value="Envoyer">
         </form>
