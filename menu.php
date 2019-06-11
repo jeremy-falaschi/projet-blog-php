@@ -10,7 +10,7 @@
         <a class="nav-link" href="index.php">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Se connecter</a>
+        <a class="nav-link" href="connexion.php">Se connecter</a>
       </li>
     </ul>
     

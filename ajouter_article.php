@@ -26,9 +26,12 @@ if (!empty($_POST)){
         $valide = false;
     }
 
-    if ($valide === true) {
+    if ($valide) {
         $req = $bdd->prepare('INSERT INTO article (contenu, titre, date_article) VALUES( ?, ?, NOW())');
-        $req->execute(array($_POST['contenu'], $_POST['titre']));
+        $req->execute(array(
+            $_POST['contenu'], 
+            $_POST['titre']
+        ));
     }
 }
 
