@@ -1,28 +1,25 @@
 <?php
 
-session_start();
-
 try
 {
     $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'phpmyadminsecure166');
     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    
 } 
 catch(Exception $e)
 {
-    die('Erreur : '.$e->getMessage());
+        die('Erreur : '.$e->getMessage());
 }
+
+$reponse = $bdd->query('SELECT titre, contenu FROM article WHERE id= "' .$_REQUEST['id']. '"');
+$donnees = $reponse -> fetch();
 
 if (!empty($_POST)){
     $valide = true;
     if(empty($_POST['titre'])){
         $alerterror = 'le titre est obligatoire';
         $valide = false;
-    } elseif (strlen($_POST['titre']) < 8) {
-        $alerterror = 'le titre est trop court';
-        $valide = false;
-    }
+    } 
 
     if (empty($_POST['contenu'])) {
         $alerterror = 'le contenu est vide';
@@ -30,13 +27,16 @@ if (!empty($_POST)){
     }
 
     if ($valide) {
-        $req = $bdd->prepare('INSERT INTO article (contenu, titre, date_article) VALUES( ?, ?, NOW())');
+        $req = $bdd->prepare('UPDATE article SET contenu = :nvcontenu, titre= :nvtitre WHERE id= "' . $_REQUEST['id']. '"');
         $req->execute(array(
-            $_POST['contenu'], 
-            $_POST['titre']
+            'nvcontenu' => $_POST['contenu'],
+            'nvtitre' => $_POST['titre']
         ));
+        header('location: administration.php');
+        
     }
 }
+
 
 
 ?>
@@ -60,12 +60,13 @@ if (!empty($_POST)){
     <?php include("menu.php"); ?>
     <section class="main">
        
-        <h1>Ajouter un article</h1>
+        <h1>Modifier l'article</h1>
         
-        <form action="ajouter_article.php" method="POST">
-            <label for="">Titre du chapitre: </label><input type="text" class="titre" name="titre" placeholder="Titre">
+        <form action="modifier_chapitre.php" method="POST">
+            <label for="">Titre du chapitre: </label><input type="text" class="titre" name="titre" placeholder="Titre" value="<?= $donnees['titre']; ?>">
             <?php if(isset($alerterror)){ echo '<p class="block_alert">' . $alerterror . '</p>';} ?>
-            <textarea name="contenu"></textarea>
+            <textarea name="contenu"><?= $donnees['contenu']; ?></textarea>
+            <input type="hidden" name="id" value="<?= $_REQUEST['id']; ?>">
             <input type="submit" name="submit" value="Envoyer">
         </form>
         

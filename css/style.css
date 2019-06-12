@@ -8,6 +8,12 @@ body {min-height: 100%; margin: 0; padding: 0; width: 100%; position: relative;}
 .main h1 {text-align: center;}
 .block_alert {color: red;}
 
+/*-----header-----*/
+
+.navbar-text {position: relative; right: -32%;}
+.nav.flex-column {float: right;}
+
+
 /*-------- home --------*/
 
 .bloc_article {width: 60%; margin: 0 auto; background-color: rgba(52,58,64); border-radius: 5px; margin-bottom: 50px;}
@@ -39,9 +45,14 @@ body {min-height: 100%; margin: 0; padding: 0; width: 100%; position: relative;}
 .bloc_connexion {margin: 20% auto; padding: 20px; text-align: center; border: 1px solid rgba(52,58,64); background-color: rgb(192, 198, 204); width: 50%;}
 .bloc_connexion input {margin-top: 20px;}
 
+/*----admin--------*/
+
+.admin .row {margin: auto;}
+.admin h1 {margin: 20px auto;}
+table .fas {background-color: #fff; margin-left: 10px; padding: 5px; border-radius: 5px;}
 
 /*------footer-------*/
 
-footer {background: linear-gradient(rgba(52,58,64,1), rgba(52,58,64,0.3)); position: relative; bottom: 0; right: 0; left: 0;}
+footer {background:rgba(52,58,64); position: relative; bottom: 0; right: 0; left: 0;}
 footer .bloc_footer {text-align: center;}
-footer h2 {color: rgb(180, 175, 175);}
+footer {color: #fff;}

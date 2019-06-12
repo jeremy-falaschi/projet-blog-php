@@ -22,7 +22,12 @@
     }
 
     if(empty($_POST['email'])){
-        $alerterror3 = 'Veuillez entrer un email valide';
+        $alerterror3 = 'Veuillez entrer une adresse mail';
+        $valide = false;
+    }
+    $email = $_POST['email'];
+    if (!preg_match(" /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ " , $email)){
+        $alerterror3 = 'L\'adresse mail est invalide';
         $valide = false;
     }
 
@@ -37,7 +42,7 @@
     }
 
     if ($_POST['password'] !== $_POST['password2']){
-        $alerterror3 = 'Les mots de passes doivent etre identiques';
+        $alerterror3 = 'Les mots de passes doivent être identiques';
         $valide = false;
     }
 
