@@ -1,46 +1,3 @@
-<?php
-
-try
-{
-    $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'phpmyadminsecure166');
-    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-} 
-catch(Exception $e)
-{
-        die('Erreur : '.$e->getMessage());
-}
-
-$reponse = $bdd->query('SELECT titre, contenu FROM article WHERE id= "' .$_REQUEST['id']. '"');
-$donnees = $reponse -> fetch();
-
-if (!empty($_POST)){
-    $valide = true;
-    if(empty($_POST['titre'])){
-        $alerterror = 'le titre est obligatoire';
-        $valide = false;
-    } 
-
-    if (empty($_POST['contenu'])) {
-        $alerterror = 'le contenu est vide';
-        $valide = false;
-    }
-
-    if ($valide) {
-        $req = $bdd->prepare('UPDATE article SET contenu = :nvcontenu, titre= :nvtitre WHERE id= "' . $_REQUEST['id']. '"');
-        $req->execute(array(
-            'nvcontenu' => $_POST['contenu'],
-            'nvtitre' => $_POST['titre']
-        ));
-        header('location: administration.php');
-        
-    }
-}
-
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -60,13 +17,12 @@ if (!empty($_POST)){
     <?php include("menu.php"); ?>
     <section class="main">
        
-        <h1>Modifier l'article</h1>
+        <h1>Ajouter un article</h1>
         
-        <form action="modifier_chapitre.php" method="POST">
-            <label for="">Titre du chapitre: </label><input type="text" class="titre" name="titre" placeholder="Titre" value="<?= $donnees['titre']; ?>">
+        <form action="index.php?action=ajouterarticle" method="POST">
+            <label for="">Titre du chapitre: </label><input type="text" class="titre" name="titre" placeholder="Titre">
             <?php if(isset($alerterror)){ echo '<p class="block_alert">' . $alerterror . '</p>';} ?>
-            <textarea name="contenu"><?= $donnees['contenu']; ?></textarea>
-            <input type="hidden" name="id" value="<?= $_REQUEST['id']; ?>">
+            <textarea name="contenu"></textarea>
             <input type="submit" name="submit" value="Envoyer">
         </form>
         

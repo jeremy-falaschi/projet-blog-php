@@ -10,17 +10,17 @@
     <ul class="nav flex-column">
       <?php if (isset($_SESSION['pseudo'])){ ?>
         <li class="nav-item">
-          <a class="nav-link" href="administration.php">Administration</a>
+          <a class="nav-link" href="index.php?action=admin">Administration</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="ajouter_article.php">Ajouter un article</a>
+          <a class="nav-link" href="index.php?action=affichenewarticle">Ajouter un article</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="deconnexion.php">Se Déconnecter</a>
+          <a class="nav-link" href="index.php?action=deconnexion">Se Déconnecter</a>
         </li>
       <?php }else { ?> 
         <li class="nav-item active">
-         <a class="nav-link" href="connexion.php">Se connecter</a>
+         <a class="nav-link" href="index.php?action=connexion">Se connecter</a>
         </li>
       <?php } ?>
     </ul>  

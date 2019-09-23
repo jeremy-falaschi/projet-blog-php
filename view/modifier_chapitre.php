@@ -1,45 +1,3 @@
-<?php
-
-session_start();
-
-try
-{
-    $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'phpmyadminsecure166');
-    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    
-} 
-catch(Exception $e)
-{
-    die('Erreur : '.$e->getMessage());
-}
-
-if (!empty($_POST)){
-    $valide = true;
-    if(empty($_POST['titre'])){
-        $alerterror = 'le titre est obligatoire';
-        $valide = false;
-    } elseif (strlen($_POST['titre']) < 8) {
-        $alerterror = 'le titre est trop court';
-        $valide = false;
-    }
-
-    if (empty($_POST['contenu'])) {
-        $alerterror = 'le contenu est vide';
-        $valide = false;
-    }
-
-    if ($valide) {
-        $req = $bdd->prepare('INSERT INTO article (contenu, titre, date_article) VALUES( ?, ?, NOW())');
-        $req->execute(array(
-            $_POST['contenu'], 
-            $_POST['titre']
-        ));
-    }
-}
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -54,18 +12,19 @@ if (!empty($_POST)){
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=your_API_key"></script>
     <script>tinymce.init({selector:'textarea'});</script>
-    <title>ajouter un article</title>
+    <title>Modifier un article</title>
 </head>
 <body>
     <?php include("menu.php"); ?>
     <section class="main">
        
-        <h1>Ajouter un article</h1>
+        <h1>Modifier l'article</h1>
         
-        <form action="ajouter_article.php" method="POST">
-            <label for="">Titre du chapitre: </label><input type="text" class="titre" name="titre" placeholder="Titre">
+        <form action="index.php?action=modifchap" method="POST">
+            <label for="">Titre du chapitre: </label><input type="text" class="titre" name="titre" placeholder="Titre" value="<?= $article->getTitre(); ?>">
             <?php if(isset($alerterror)){ echo '<p class="block_alert">' . $alerterror . '</p>';} ?>
-            <textarea name="contenu"></textarea>
+            <textarea name="contenu"><?= $article->getContenu(); ?></textarea>
+            <input type="hidden" name="id" value="<?= $_REQUEST['id']; ?>">
             <input type="submit" name="submit" value="Envoyer">
         </form>
         

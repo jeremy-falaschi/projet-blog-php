@@ -1,27 +1,3 @@
-<?php
-    session_start();
-
-
-    try
-    {
-        $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'phpmyadminsecure166');
-        $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    } 
-    catch(Exception $e)
-    {
-            die('Erreur : '.$e->getMessage());
-    }
-
-    $reponse = $bdd->query('SELECT id, idbillet, pseudo, commentaire, DATE_FORMAT(date_message, \'%d/%m/%Y à %Hh%imin%ss\') AS date_message FROM commentaires WHERE signalement = 0 ORDER BY idbillet DESC');
-
-    $reponse2 = $bdd->query('SELECT id, titre, DATE_FORMAT(date_article, \'%d/%m/%Y à %Hh%imin%ss\') AS date_article_fr FROM article ORDER BY id DESC');
-    
-    $reponse3 = $bdd->query('SELECT id, idbillet, pseudo, commentaire, DATE_FORMAT(date_message, \'%d/%m/%Y à %Hh%imin%ss\') AS date_message FROM commentaires WHERE signalement = 1 ORDER BY idbillet DESC');
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -55,13 +31,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php while($donnees3 = $reponse3->fetch()){ ?>
+                            <?php foreach($commentairesSignal as $signal){ ?>
                                 <tr>
-                                <th scope="row"><?= $donnees3['idbillet']; ?></th>
-                                <td><?= $donnees3['pseudo']; ?></td>
-                                <td><?= $donnees3['commentaire']; ?></td>
-                                <td><?= $donnees3['date_message']; ?></td>
-                                <td><a href="suppression_commentaire.php?id=<?= $donnees3['id']; ?>"><i class="fas fa-trash-alt"></i></a></td>
+                                <th scope="row"><?= $signal->getIdBillet(); ?></th>
+                                <td><?= $signal->getPseudo(); ?></td>
+                                <td><?= $signal->getCommentaire(); ?></td>
+                                <td><?= $signal->getDateMessage(); ?></td>
+                                <td><a href="index.php?action=supcomment&id=<?= $signal->getId(); ?>"><i class="fas fa-trash-alt"></i></a></td>
                                 </tr>
                             <?php } ?>   
                             </tbody>
@@ -80,13 +56,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php while($donnees = $reponse->fetch()){ ?>
+                            <?php foreach($commentairesNoSignal as $noSignal){ ?>
                                 <tr>
-                                <th scope="row"><?= $donnees['idbillet']; ?></th>
-                                <td><?= $donnees['pseudo']; ?></td>
-                                <td><?= $donnees['commentaire']; ?></td>
-                                <td><?= $donnees['date_message']; ?></td>
-                                <td><a href="suppression_commentaire.php?id=<?= $donnees['id']; ?>"><i class="fas fa-trash-alt"></i></a></td>
+                                <th scope="row"><?= $noSignal->getIdBillet(); ?></th>
+                                <td><?= $noSignal->getPseudo(); ?></td>
+                                <td><?= $noSignal->getCommentaire(); ?></td>
+                                <td><?= $noSignal->getDateMessage(); ?></td>
+                                <td><a href="index.php?action=supcomment&id=<?= $noSignal->getId(); ?>"><i class="fas fa-trash-alt"></i></a></td>
                                 </tr>
                             <?php } ?>   
                             </tbody>
@@ -104,12 +80,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php while($donnees2 = $reponse2->fetch()){ ?>
+                            <?php foreach($articles as $article){ ?>
                                 <tr>
-                                <th scope="row"><?= $donnees2['id']; ?></th>
-                                <td><?= $donnees2['titre']; ?></td>
-                                <td><?= $donnees2['date_article_fr']; ?></td>
-                                <td><a href="modifier_chapitre.php?id=<?= $donnees2['id']; ?>"><i class="fas fa-pen"></i></a><a href="suppression_chapitre.php?id=<?= $donnees2['id']; ?>"><i class="fas fa-trash-alt"></i></a></td>
+                                <th scope="row"><?= $article->getId(); ?></th>
+                                <td><?= $article->getTitre(); ?></td>
+                                <td><?= $article->getDateArticle(); ?></td>
+                                <td><a href="index.php?action=affichemodifchap&id=<?= $article->getId(); ?>"><i class="fas fa-pen"></i></a><a href="index.php?action=supchap&id=<?= $article->getId(); ?>"><i class="fas fa-trash-alt"></i></a></td>
                                 </tr>
                             <?php } ?>   
                             </tbody>

@@ -17,8 +17,8 @@
         <div class="container">
             <div class="row">
                 <div class="bloc_validation">
-                    <p>Vous êtes desormais inscrit !</p>
-                    <a href="connexion.php">Se connecter</a>
+                    <p>Vous êtes désormais inscrit !</p>
+                    <a href="index.php?action=connexion">Se connecter</a>
                 </div>
             </div>
         </div>

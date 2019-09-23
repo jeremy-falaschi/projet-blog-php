@@ -16,13 +16,16 @@ body {min-height: 100%; margin: 0; padding: 0; width: 100%; position: relative;}
 
 /*-------- home --------*/
 
-.bloc_article {width: 60%; margin: 0 auto; background-color: rgba(52,58,64); border-radius: 5px; margin-bottom: 50px;}
+.bloc_article { background-color: rgba(52,58,64); border-radius: 5px; margin-bottom: 30px; position: relative;}
 .bloc_article h2 {text-align: center; color: #fff;}
-.bloc_article .contenu {padding: 2% 5% 2% 5%; width: 90%; margin: auto; background-color: rgb(192, 198, 204); border-radius: 5px; height: 500px; overflow-y: hidden; text-align: justify;}
-.bloc_article .date_article {text-align: center; color: rgb(243, 215, 215)}
+.bloc_article .contenu {padding: 2% 5% 2% 5%; width: 99%; margin: auto; background-color: rgb(192, 198, 204); border-radius: 5px; max-height: 300px; overflow-y: hidden; text-align: justify;}
+.bloc_article .date_article {text-align: center; color: #fff;}
 .bloc_article .date_lien {display: flex; justify-content: space-between; padding: 0 10%;}
-.title-home h1, .title-home p {text-align: center;}
-
+.bloc_article:hover .overlay {visibility: visible;}
+.title-home {text-align: center;}
+.overlay {position: absolute; background-color: rgba(0, 0, 0, 0.3); visibility: hidden; top: 0; right: 0; bottom: 0; left: 0;}
+.overlay a {position: absolute; top: 50%; left: 0; right: 0; text-align: center; transform: translateY(-50%); font-size: 30px; color: #fff;}
+.overlay a:hover {color: aliceblue;}
 
 /*------ article --------*/
 
@@ -56,3 +59,9 @@ table .fas {background-color: #fff; margin-left: 10px; padding: 5px; border-radi
 footer {background:rgba(52,58,64); position: relative; bottom: 0; right: 0; left: 0;}
 footer .bloc_footer {text-align: center;}
 footer {color: #fff;}
+
+
+@media screen and (max-width: 480px)
+{
+    .container {padding: 0 !important; margin: 0 !important;}
+}

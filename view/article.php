@@ -1,59 +1,9 @@
-<?php
-
-session_start();
-
- try
- {
-     $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'phpmyadminsecure166');
-     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    
-     
- } 
- catch(Exception $e)
- {
-         die('Erreur : '.$e->getMessage());
- }
-
-
- if (!empty($_POST)){
-    $valide = true;
-    if(empty($_POST['Pseudo'])){
-        $alerterror2 = 'Veuillez entrer un pseudo';
-        $valide = false;
-    }
-
-    if (empty($_POST['contenucomment'])) {
-        $alerterror2 = 'Merci de saisir votre message';
-        $valide = false;
-    }
-
-    if ($valide) {
-        $req = $bdd->prepare('INSERT INTO commentaires (idbillet, pseudo, commentaire, date_message) VALUES( ?, ?, ?, NOW())');
-        $req->execute(array($_GET['id'], 
-            $_POST['pseudo'], 
-            $_POST['contenucomment']
-        ));
-    }
- }
-
-
- $reponse = $bdd->query('SELECT contenu, titre, DATE_FORMAT(date_article, \'%d/%m/%Y à %Hh%imin%ss\') AS date_article FROM article WHERE id = "' . $_GET['id']. '"');
- $donnees = $reponse->fetch();
-
- $reponse2 = $bdd->query('SELECT id, pseudo, commentaire, idbillet, DATE_FORMAT(date_message, \'%d/%m/%Y à %Hh%imin%ss\') AS date_message FROM commentaires WHERE idbillet = "' . $_GET['id']. '"');
-
- 
-
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -69,25 +19,25 @@ session_start();
         <div class="container">
             <div class="row">
                 <div class="article">
-                    <h1><?= $donnees['titre']; ?></h1>
-                    <p>Publié le : <?= $donnees['date_article']; ?> </p>
-                    <div class="contenu_article"><?= $donnees['contenu']; ?></div>
+                    <h1><?= $article->getTitre(); ?></h1>
+                    <p>Publié le : <?= $article->getDateArticle(); ?> </p>
+                    <div class="contenu_article"><?= $article->getContenu(); ?></div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 commentaires">
                     <h2>Commentaires :</h2>
-                    <?php while($donnees2 = $reponse2->fetch()){ ?>
+                    <?php foreach ($commentaires as $commentaire) { ?>
                         <div class="commentaire">
-                            <p class="pseudo"><?= $donnees2['pseudo']; ?> :</p>
-                            <p class="date_message">Le <?= $donnees2['date_message']; ?> ,</p>
-                            <p class="message"><?= $donnees2['commentaire']; ?></p>
-                            <a class="signal" href="signalement.php?id=<?= $donnees2['id']; ?>&idbillet=<?= $donnees2['idbillet']; ?>"><i class="fas fa-exclamation-triangle"></i>Signaler ce message</a>
+                            <p class="pseudo"><?= $commentaire->getPseudo(); ?> :</p>
+                            <p class="date_message">Le <?= $commentaire->getDateMessage(); ?> ,</p>
+                            <p class="message"><?= $commentaire->getCommentaire(); ?></p>
+                            <a class="signal" href="index.php?action=signalement&id=<?= $commentaire->getId(); ?>&idbillet=<?= $commentaire->getIdBillet(); ?>"><i class="fas fa-exclamation-triangle"></i>Signaler ce message</a>
                         </div>
                     <?php } ?> 
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 créer_commentaire">
                     <h2>Laisser un commentaire : </h2>
                     <?php if(isset($alerterror2)){ echo '<p class="block_alert">' . $alerterror2 . '</p>';} ?>
-                    <form action="article.php?id=<?= $_GET['id']; ?>" method="POST">
+                    <form action="index.php?article=<?= $_GET['article']; ?>" method="POST">
                         <input type="text" class="pseudo_comment" name="pseudo" placeholder="Pseudo"><br/>
                         <textarea class="contenu_commentaire" name="contenucomment" placeholder="Votre message"></textarea><br/>
                         <input type="submit" class="comment_submit" name="submit" value="Envoyer">
