@@ -22,7 +22,9 @@
         
         <form action="index.php?action=modifchap" method="POST">
             <label for="">Titre du chapitre: </label><input type="text" class="titre" name="titre" placeholder="Titre" value="<?= $article->getTitre(); ?>">
-            <?php if(isset($alerterror)){ echo '<p class="block_alert">' . $alerterror . '</p>';} ?>
+            <?php if (isset($alerterror)): ?>
+            <p class="block_alert"><?= $alerterror; ?></p>
+            <?php endif; ?>
             <textarea name="contenu"><?= $article->getContenu(); ?></textarea>
             <input type="hidden" name="id" value="<?= $_REQUEST['id']; ?>">
             <input type="submit" name="submit" value="Envoyer">

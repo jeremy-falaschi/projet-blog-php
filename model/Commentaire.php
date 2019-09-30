@@ -1,7 +1,7 @@
-<?php 
+<?php
 
-class Commentaires {
-
+class Commentaires
+{
     private $id;
     private $idbillet;
     private $pseudo;
@@ -9,74 +9,90 @@ class Commentaires {
     private $date_message;
     private $signalement;
 
-    public function __construct(Array $data){
+    public function __construct(array $data)
+    {
         $this->hydrate($data);
-
     }
 
-    public function hydrate($data){
-        if(isset($data['id'])){
+    public function hydrate($data)
+    {
+        if (isset($data['id'])) {
             $this->setId($data['id']);
         }
-        if(isset($data['idbillet'])){
+        if (isset($data['idbillet'])) {
             $this->setIdBillet($data['idbillet']);
         }
-        if(isset($data['pseudo'])){
+        if (isset($data['pseudo'])) {
             $this->setPseudo($data['pseudo']);
         }
-        if(isset($data['commentaire'])){
+        if (isset($data['commentaire'])) {
             $this->setCommentaire($data['commentaire']);
         }
-        if(isset($data['date_message'])){
+        if (isset($data['date_message'])) {
             $this->setDateMessage($data['date_message']);
         }
-        if(isset($data['signalement'])){
+        if (isset($data['signalement'])) {
             $this->setSignalement($data['signalement']);
         }
-      
     }
 
-    public function getId(){
-        return $this->id; 
+    public function getId()
+    {
+        return $this->id;
     }
-    public function getIdBillet(){
+
+    public function getIdBillet()
+    {
         return $this->idbillet;
     }
-    public function getPseudo(){
+
+    public function getPseudo()
+    {
         return $this->pseudo;
     }
-    public function getCommentaire(){
+
+    public function getCommentaire()
+    {
         return $this->commentaire;
     }
-    public function getDateMessage(){
+
+    public function getDateMessage()
+    {
         return $this->date_message;
     }
-    public function getSignalement(){
+
+    public function getSignalement()
+    {
         return $this->signalement;
     }
 
-
-
-    public function setId($id){
+    public function setId($id)
+    {
         $this->id = $id;
     }
-    public function setIdbillet($idbillet){
+
+    public function setIdbillet($idbillet)
+    {
         $this->idbillet = $idbillet;
     }
-    public function setPseudo($pseudo){
+
+    public function setPseudo($pseudo)
+    {
         $this->pseudo = $pseudo;
     }
-    public function setCommentaire($commentaire){
+
+    public function setCommentaire($commentaire)
+    {
         $this->commentaire = htmlspecialchars($commentaire);
     }
-    public function setDateMessage($date_message){
+
+    public function setDateMessage($date_message)
+    {
         $this->date_message = $date_message;
     }
-    public function setSignalement($signalement){
+
+    public function setSignalement($signalement)
+    {
         $this->signalement = $signalement;
     }
-
-
-
-
 }

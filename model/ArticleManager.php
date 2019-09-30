@@ -1,6 +1,6 @@
 <?php
-class ArticleManager{
-
+class ArticleManager
+{
     private $db;
 
     public function __construct()
@@ -17,8 +17,6 @@ class ArticleManager{
             $article->getContenu(),
             $article->getTitre(),
             $article->getIdAuteur()
-        
-            
         ]);
     }
 
@@ -28,9 +26,7 @@ class ArticleManager{
         $req->execute([
             $id
         ]);
- 
         return new Article($req->fetch());
-
     }
 
     public function delete($id)
@@ -39,25 +35,16 @@ class ArticleManager{
         $req->execute([
             $id
         ]);
- 
         return true;
-
     }
 
     public function getList()
     {
-        
         $articles = [];
-        
         $req = $this->db->query('SELECT id, contenu, titre, DATE_FORMAT(date_article, \'%d/%m/%Y à %Hh%imin%ss\') AS date_article FROM article ORDER BY id DESC');
-        
-        
-        while($data = $req->fetch())
-        {
+        while ($data = $req->fetch()) {
             $articles[] = new Article($data);
-            
         }
-      
         return $articles;
     }
 
@@ -70,5 +57,4 @@ class ArticleManager{
             'id' => $id
         ));
     }
-
 }

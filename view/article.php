@@ -25,18 +25,20 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 commentaires">
                     <h2>Commentaires :</h2>
-                    <?php foreach ($commentaires as $commentaire) { ?>
+                    <?php foreach ($commentaires as $commentaire): ?>
                         <div class="commentaire">
                             <p class="pseudo"><?= $commentaire->getPseudo(); ?> :</p>
                             <p class="date_message">Le <?= $commentaire->getDateMessage(); ?> ,</p>
                             <p class="message"><?= $commentaire->getCommentaire(); ?></p>
                             <a class="signal" href="index.php?action=signalement&id=<?= $commentaire->getId(); ?>&idbillet=<?= $commentaire->getIdBillet(); ?>"><i class="fas fa-exclamation-triangle"></i>Signaler ce message</a>
                         </div>
-                    <?php } ?> 
+                    <?php endforeach; ?> 
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 créer_commentaire">
                     <h2>Laisser un commentaire : </h2>
-                    <?php if(isset($alerterror2)){ echo '<p class="block_alert">' . $alerterror2 . '</p>';} ?>
+                    <?php if (isset($alerterror2)): ?>
+                    <p class="block_alert"> <?= $alerterror2; ?></p>
+                    <?php endif; ?>
                     <form action="index.php?article=<?= $_GET['article']; ?>" method="POST">
                         <input type="text" class="pseudo_comment" name="pseudo" placeholder="Pseudo"><br/>
                         <textarea class="contenu_commentaire" name="contenucomment" placeholder="Votre message"></textarea><br/>

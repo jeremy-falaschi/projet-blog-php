@@ -31,7 +31,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php foreach($commentairesSignal as $signal){ ?>
+                            <?php foreach ($commentairesSignal as $signal): ?>
                                 <tr>
                                 <th scope="row"><?= $signal->getIdBillet(); ?></th>
                                 <td><?= $signal->getPseudo(); ?></td>
@@ -39,7 +39,7 @@
                                 <td><?= $signal->getDateMessage(); ?></td>
                                 <td><a href="index.php?action=supcomment&id=<?= $signal->getId(); ?>"><i class="fas fa-trash-alt"></i></a></td>
                                 </tr>
-                            <?php } ?>   
+                            <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
@@ -56,7 +56,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php foreach($commentairesNoSignal as $noSignal){ ?>
+                            <?php foreach ($commentairesNoSignal as $noSignal): ?>
                                 <tr>
                                 <th scope="row"><?= $noSignal->getIdBillet(); ?></th>
                                 <td><?= $noSignal->getPseudo(); ?></td>
@@ -64,7 +64,7 @@
                                 <td><?= $noSignal->getDateMessage(); ?></td>
                                 <td><a href="index.php?action=supcomment&id=<?= $noSignal->getId(); ?>"><i class="fas fa-trash-alt"></i></a></td>
                                 </tr>
-                            <?php } ?>   
+                            <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
@@ -80,14 +80,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php foreach($articles as $article){ ?>
+                            <?php foreach ($articles as $article): ?>
                                 <tr>
                                 <th scope="row"><?= $article->getId(); ?></th>
                                 <td><?= $article->getTitre(); ?></td>
                                 <td><?= $article->getDateArticle(); ?></td>
                                 <td><a href="index.php?action=affichemodifchap&id=<?= $article->getId(); ?>"><i class="fas fa-pen"></i></a><a href="index.php?action=supchap&id=<?= $article->getId(); ?>"><i class="fas fa-trash-alt"></i></a></td>
                                 </tr>
-                            <?php } ?>   
+                            <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

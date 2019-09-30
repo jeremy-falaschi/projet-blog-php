@@ -19,7 +19,9 @@
             <div class="row">
                 <div class="bloc_inscription">
                     <h1>Inscription</h1>
-                    <?php if(isset($alerterror3)){ echo '<p class="block_alert">' . $alerterror3 . '</p>';} ?>
+                    <?php if (isset($alerterror3)): ?>
+                    <p class="block_alert"><?= $alerterror3; ?></p>
+                    <?php endif; ?>
                     <form action="index.php?action=checkinscription" method="POST">
                         <input type="text" name="pseudo" placeholder="Pseudo" required><br/>
                         <input type="email" name="email" placeholder="Email" required><br/>

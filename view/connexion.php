@@ -18,7 +18,9 @@
             <div class="row">
                 <div class="bloc_connexion">
                     <h1>Connexion</h1>
-                    <?php if(isset($alerterror4)){ echo '<p class="block_alert">' . $alerterror4 . '</p>';} ?>
+                    <?php if (isset($alerterror4)): ?>
+                    <p class="block_alert"><?= $alerterror4; ?></p>
+                    <?php endif; ?>
                     <form action="index.php?action=checkconnexion" method="POST">
                         <input type="email" name="email" placeholder="Email" required><br/>
                         <input type="password" name="password" placeholder="Mot de passe" required><br/>

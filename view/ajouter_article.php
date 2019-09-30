@@ -21,7 +21,9 @@
         
         <form action="index.php?action=ajouterarticle" method="POST">
             <label for="">Titre du chapitre: </label><input type="text" class="titre" name="titre" placeholder="Titre">
-            <?php if(isset($alerterror)){ echo '<p class="block_alert">' . $alerterror . '</p>';} ?>
+            <?php if (isset($alerterror)): ?>
+            <p class="block_alert"><?= $alerterror; ?></p>
+            <?php endif; ?>
             <textarea name="contenu"></textarea>
             <input type="submit" name="submit" value="Envoyer">
         </form>
