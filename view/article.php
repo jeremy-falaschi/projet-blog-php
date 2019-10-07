@@ -25,6 +25,9 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 commentaires">
                     <h2>Commentaires :</h2>
+                    <?php if(empty($commentaires)): ?>
+                        <p clas="nocomment">Pas de commentaire</p>
+                    <?php endif; ?> 
                     <?php foreach ($commentaires as $commentaire): ?>
                         <div class="commentaire">
                             <p class="pseudo"><?= $commentaire->getPseudo(); ?> :</p>
@@ -32,7 +35,8 @@
                             <p class="message"><?= $commentaire->getCommentaire(); ?></p>
                             <a class="signal" href="index.php?action=signalement&id=<?= $commentaire->getId(); ?>&idbillet=<?= $commentaire->getIdBillet(); ?>"><i class="fas fa-exclamation-triangle"></i>Signaler ce message</a>
                         </div>
-                    <?php endforeach; ?> 
+                    <?php endforeach; ?>
+            
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 créer_commentaire">
                     <h2>Laisser un commentaire : </h2>

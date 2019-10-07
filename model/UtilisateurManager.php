@@ -5,8 +5,6 @@ class UtilisateurManager
 
     public function __construct()
     {
-        require_once(APP_ROOT . '/DataBaseConnection.php');
-        require_once(APP_ROOT . '/model/Utilisateur.php');
         $this->db = DataBaseConnection::getInstance();
     }
 

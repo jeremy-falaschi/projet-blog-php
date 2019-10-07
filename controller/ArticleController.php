@@ -5,8 +5,6 @@ class ArticleController
     public function detail($id)
     {
         ob_start();
-        require_once(APP_ROOT . '/model/ArticleManager.php');
-        require_once(APP_ROOT . '/model/CommentaireManager.php');
         $articleManager = new ArticleManager();
         $article = $articleManager->get($id);
         $commentaireManager = new CommentairesManager();
@@ -74,7 +72,6 @@ class ArticleController
     public function modifArticle()
     {
         ob_start();
-        require_once(APP_ROOT . '/model/ArticleManager.php');
         $articleManager = new ArticleManager();
         $article = $articleManager->get($_REQUEST['id']);
         if (!empty($_POST)) {
@@ -99,7 +96,6 @@ class ArticleController
     public function afficheModifArticle()
     {
         ob_start();
-        require_once(APP_ROOT . '/model/ArticleManager.php');
         $articleManager = new ArticleManager();
         $article = $articleManager->get($_REQUEST['id']);
         include(APP_ROOT . '/view/modifier_chapitre.php');
@@ -110,7 +106,6 @@ class ArticleController
     public function signalementCommentaire()
     {
         ob_start();
-        require_once(APP_ROOT . '/model/CommentaireManager.php');
         $commentaireManager = new CommentairesManager();
         $return = $commentaireManager->signal($_GET['id']);
         header('location: index.php?article=' . $_GET['idbillet']. '');

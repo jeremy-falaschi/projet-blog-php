@@ -5,8 +5,6 @@ class ArticleManager
 
     public function __construct()
     {
-        require_once(APP_ROOT . '/DataBaseConnection.php');
-        require_once(APP_ROOT . '/model/Article.php');
         $this->db = DataBaseConnection::getInstance();
     }
 
@@ -50,7 +48,7 @@ class ArticleManager
 
     public function update($id, $contenu, $titre)
     {
-        $req = $this->db->prepare('UPDATE article SET contenu = :nvcontenu, titre= :nvtitre WHERE id= :id');
+        $req = $this->db->prepare('UPDATE article SET contenu = :nvcontenu, titre = :nvtitre WHERE id = :id');
         $req->execute(array(
             'nvcontenu' => $contenu,
             'nvtitre' => $titre,

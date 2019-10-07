@@ -24,11 +24,12 @@
         </div>
         <div class="row">
             <?php foreach ($articles as $article): ?>
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-6 col-lg-4">
                 <div class="bloc_article">   
                     <h2><?= $article->getTitre(); ?></h2>
                     <div class="contenu"><?= $article->getContenu(); ?></div>
                     <div class="overlay"><a href="index.php?article=<?= $article->getId(); ?>">Voir plus</a></div>
+                    <div class="lien_resp"><a href="index.php?article=<?= $article->getId(); ?>">Voir plus</a></div>
                     <div class="date_lien"><p class="date_article">Publié le : <?= $article->getDateArticle(); ?> </p></div>
                 </div> 
             </div>

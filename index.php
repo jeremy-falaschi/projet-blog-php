@@ -1,75 +1,65 @@
 <?php
 session_start();
 define('APP_ROOT', __DIR__);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+ini_set('display_errors', 1);/* a comprendre */
+ini_set('display_startup_errors', 1);/* a comprendre */
+error_reporting(E_ALL);/* a comprendre */
+require_once(APP_ROOT . '/DataBaseConnection.php');
+require_once(APP_ROOT . '/controller/ArticleController.php');
+require_once(APP_ROOT . '/controller/AdminController.php');
+require_once(APP_ROOT . '/controller/HomeController.php');
+require_once(APP_ROOT . '/model/ArticleManager.php');
+require_once(APP_ROOT . '/model/Article.php');
+require_once(APP_ROOT . '/model/CommentaireManager.php');
+require_once(APP_ROOT . '/model/Commentaire.php');
+require_once(APP_ROOT . '/model/UtilisateurManager.php');
+require_once(APP_ROOT . '/model/Utilisateur.php');
+$homeController = new HomeController();
+$articleController = new ArticleController();
+$adminController = new AdminController();
 
 if (empty($_SERVER['QUERY_STRING'])) {
-    require_once(APP_ROOT . '/controller/HomeController.php');
-    $controller = new HomeController();
-    $controller->index();
+    $homeController->index();
 } elseif (isset($_GET['article'])) {
-    require_once(APP_ROOT . '/controller/ArticleController.php');
-    $controller = new ArticleController();
-    $controller->detail($_GET['article']);
+    $articleController->detail($_GET['article']);
 } elseif (isset($_GET['action'])) {
-    if ($_GET['action'] == 'connexion') {
-        require_once(APP_ROOT . '/controller/AdminController.php');
-        $controller = new AdminController();
-        $controller->connexion();
-    } elseif ($_GET['action'] == 'checkconnexion') {
-        require_once(APP_ROOT . '/controller/AdminController.php');
-        $controller = new AdminController();
-        $controller->checkConnexion();
-    } elseif ($_GET['action'] == 'admin') {
-        require_once(APP_ROOT . '/controller/AdminController.php');
-        $controller = new AdminController();
-        $controller->admin();
-    } elseif ($_GET['action'] == 'supchap') {
-        require_once(APP_ROOT . '/controller/AdminController.php');
-        $controller = new AdminController();
-        $controller->supChapitre();
-    } elseif ($_GET['action'] == 'supcomment') {
-        require_once(APP_ROOT . '/controller/AdminController.php');
-        $controller = new AdminController();
-        $controller->supCommentaire();
-    } elseif ($_GET['action'] == 'modifchap') {
-        require_once(APP_ROOT . '/controller/ArticleController.php');
-        $controller = new ArticleController();
-        $controller->modifArticle();
-    } elseif ($_GET['action'] == 'affichemodifchap') {
-        require_once(APP_ROOT . '/controller/ArticleController.php');
-        $controller = new ArticleController();
-        $controller->afficheModifArticle();
-    } elseif ($_GET['action'] == 'signalement') {
-        require_once(APP_ROOT . '/controller/ArticleController.php');
-        $controller = new ArticleController();
-        $controller->signalementCommentaire();
-    } elseif ($_GET['action'] == 'deconnexion') {
-        require_once(APP_ROOT . '/controller/AdminController.php');
-        $controller = new AdminController();
-        $controller->deconnexion();
-    } elseif ($_GET['action'] == 'affichenewarticle') {
-        require_once(APP_ROOT . '/controller/ArticleController.php');
-        $controller = new ArticleController();
-        $controller->pageNewArticle();
-    } elseif ($_GET['action'] == 'ajouterarticle') {
-        require_once(APP_ROOT . '/controller/ArticleController.php');
-        $controller = new ArticleController();
-        $controller->newArticle();
-    } elseif ($_GET['action'] == 'inscription') {
-        require_once(APP_ROOT . '/controller/AdminController.php');
-        $controller = new AdminController();
-        $controller->pageInscription();
-    } elseif ($_GET['action'] == 'checkinscription') {
-        require_once(APP_ROOT . '/controller/AdminController.php');
-        $controller = new AdminController();
-        $controller->inscription();
-    } elseif ($_GET['action'] == 'confirminscription') {
-        require_once(APP_ROOT . '/controller/AdminController.php');
-        $controller = new AdminController();
-        $controller->pageConfirmationInscription();
+    switch ($_GET['action']) {
+        case 'connexion':
+            $adminController->connexion();
+            break;
+        case 'admin':
+            $adminController->admin();
+            break; 
+        case 'supchap':
+            $adminController->supChapitre();
+            break;
+        case 'supcomment':
+            $adminController->supCommentaire();
+            break;
+        case 'modifchap':
+            $articleController->modifArticle();
+            break;
+        case 'affichemodifchap':
+            $articleController->afficheModifArticle();
+            break;  
+        case 'signalement':
+            $articleController->signalementCommentaire();
+            break;
+        case 'deconnexion':
+            $adminController->deconnexion();
+            break;
+        case 'affichenewarticle':
+            $articleController->pageNewArticle();
+            break;   
+        case 'ajouterarticle':
+            $articleController->newArticle();
+            break;
+        case 'inscription':
+            $adminController->inscription();
+            break;
+        case 'confirminscription':
+            $adminController->pageConfirmationInscription();
+            break;               
     }
 } else {
     throw new Exception('Erreur 404');

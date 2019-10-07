@@ -1,4 +1,4 @@
-<nav class="navbar navbar-fixed-top  navbar-dark bg-dark">
+<nav class="navbar navbar-fixed-top  navbar-light bg-light">
     <a class="navbar-brand" href="index.php">le blog de Jean Forteroche</a>
     <?php if (isset($_SESSION['pseudo'])): ?>
         <span class="navbar-text">Bonjour <?= $_SESSION['pseudo']; ?></span>  

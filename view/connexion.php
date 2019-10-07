@@ -21,7 +21,7 @@
                     <?php if (isset($alerterror4)): ?>
                     <p class="block_alert"><?= $alerterror4; ?></p>
                     <?php endif; ?>
-                    <form action="index.php?action=checkconnexion" method="POST">
+                    <form action="index.php?action=connexion" method="POST">
                         <input type="email" name="email" placeholder="Email" required><br/>
                         <input type="password" name="password" placeholder="Mot de passe" required><br/>
                         <input type="submit" name="submit" value="envoyer">

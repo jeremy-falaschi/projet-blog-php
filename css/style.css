@@ -1,24 +1,28 @@
 /*-----general------*/
 
 html { width: 100%; height: 100%;}
-body {min-height: 100%; margin: 0; padding: 0; width: 100%; position: relative;}
+body {min-height: 100%; margin: 0; padding: 0; width: 100%; position: relative; background-color: #ffffff !important;}
 
 .main {min-height: calc(100vh - 56px - 110px); margin-bottom: 40px;}
 .row {max-width: 100%;}
 .main h1 {text-align: center;}
 .block_alert {color: red;}
+textarea, .tox-tinymce {margin-top: 10px !important; margin-bottom: 10px !important;}
+a {color: #ffffff !important;}
 
 /*-----header-----*/
 
 .navbar-text {position: relative; right: -32%;}
 .nav.flex-column {float: right;}
+.navbar.bg-light {background: linear-gradient(#067790, #008080) !important;}
+.navbar.bg-light a, .navbar.bg-light span, .navbar.bg-light button { color: #ffffff !important;}
 
 
 /*-------- home --------*/
 
-.bloc_article { background-color: rgba(52,58,64); border-radius: 5px; margin-bottom: 30px; position: relative;}
+.bloc_article {background: linear-gradient(#067790, #008080) !important; border-radius: 5px; margin-bottom: 30px; position: relative;}
 .bloc_article h2 {text-align: center; color: #fff;}
-.bloc_article .contenu {padding: 2% 5% 2% 5%; width: 99%; margin: auto; background-color: rgb(192, 198, 204); border-radius: 5px; max-height: 300px; overflow-y: hidden; text-align: justify;}
+.bloc_article .contenu {padding: 2% 5% 2% 5%; width: 99%; margin: auto; background-color: #d5d5d5; border-radius: 5px; max-height: 300px; overflow-y: hidden; text-align: justify;}
 .bloc_article .date_article {text-align: center; color: #fff;}
 .bloc_article .date_lien {display: flex; justify-content: space-between; padding: 0 10%;}
 .bloc_article:hover .overlay {visibility: visible;}
@@ -26,11 +30,18 @@ body {min-height: 100%; margin: 0; padding: 0; width: 100%; position: relative;}
 .overlay {position: absolute; background-color: rgba(0, 0, 0, 0.3); visibility: hidden; top: 0; right: 0; bottom: 0; left: 0;}
 .overlay a {position: absolute; top: 50%; left: 0; right: 0; text-align: center; transform: translateY(-50%); font-size: 30px; color: #fff;}
 .overlay a:hover {color: aliceblue;}
+.lien_resp {display: none; text-align: center;}
+
 
 /*------ article --------*/
 
 .créer_commentaire textarea {width: 100%;}
 .commentaire {border: 1px solid rgba(52,58,64); padding: 2% 3%; margin: 5% 3%; border-radius: 15px; background-color: rgb(192, 198, 204);}
+.article {background: #008080; margin-top: 20px; border-radius: 5px;}
+.article > p {padding: 10px;}
+.contenu_article {background-color: #d5d5d5; width: 99%; border-radius: 5px; margin: 0 auto 30px; padding: 2%;}
+a.signal {color: rgb(145, 11, 11) !important;}
+
 
 /*--------page inscription----------*/
 
@@ -52,16 +63,31 @@ body {min-height: 100%; margin: 0; padding: 0; width: 100%; position: relative;}
 
 .admin .row {margin: auto;}
 .admin h1 {margin: 20px auto;}
-table .fas {background-color: #fff; margin-left: 10px; padding: 5px; border-radius: 5px;}
+table .fas {margin-left: 10px; padding: 5px; border-radius: 5px; background-color: #ffffff; color: #000000;}
+table.table-dark {background-color: #067790 !important;}
+.table-dark td, .table-dark th, .table-dark thead th {border-color: #067790 !important;}
 
 /*------footer-------*/
 
-footer {background:rgba(52,58,64); position: relative; bottom: 0; right: 0; left: 0;}
+footer {background: linear-gradient(#067790, #008080) !important; position: relative; bottom: 0; right: 0; left: 0;}
 footer .bloc_footer {text-align: center;}
 footer {color: #fff;}
 
 
+@media screen and (max-width: 1300px)
+{
+    .navbar-text {right: -15%;}
+}
+
+@media screen and (max-width: 991px)
+{
+    .bloc_inscription {width: 80%;}
+}
+
 @media screen and (max-width: 480px)
 {
     .container {padding: 0 !important; margin: 0 !important;}
+    .row {margin: 00 !important;}
+    .lien_resp {display: block;}
+    td, th, tr {font-size: 10px; padding: 0.3rem !important;}
 }

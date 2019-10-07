@@ -5,8 +5,6 @@ class CommentairesManager
 
     public function __construct()
     {
-        require_once(APP_ROOT . '/DataBaseConnection.php');
-        require_once(APP_ROOT . '/model/Commentaire.php');
         $this->db = DataBaseConnection::getInstance();
     }
 

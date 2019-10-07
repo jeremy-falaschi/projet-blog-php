@@ -2,35 +2,27 @@
 
 class AdminController
 {
-    public function checkConnexion()
+
+    public function connexion()
     {
-        require_once(APP_ROOT . '/model/UtilisateurManager.php');
         if (!empty($_POST)) {
-            $valide = true;
             $email = $_POST['email'];
             $utilisateurManager = new utilisateurManager();
             $utilisateur = $utilisateurManager->get($email);
             if (empty($_POST['email'])) {
                 $alerterror4 = 'Veuillez entrer votre adresse mail';
-                $valide = false;
             }
             if (empty($_POST['password'])) {
                 $alerterror4 = 'Vous devez saisir un mot de passe';
-                $valide = false;
             }
             if (!password_verify($_POST['password'], $utilisateur->getMdp())) {
                 $alerterror4 = 'Mot de passe érroné';
-                $valide = false;
             } else {
                 $_SESSION['pseudo'] = $utilisateur->getPseudo();
                 header('location: index.php');
                 die;
             }
         }
-    }
-
-    public function connexion()
-    {
         ob_start();
         include(APP_ROOT . '/view/connexion.php');
         $html = ob_end_flush();
@@ -45,22 +37,24 @@ class AdminController
 
     public function admin()
     {
-        ob_start();
-        require_once(APP_ROOT . '/model/ArticleManager.php');
-        require_once(APP_ROOT . '/model/CommentaireManager.php');
-        $commentaireManager = new CommentairesManager();
-        $commentairesSignal = $commentaireManager->getListSignal();
-        $commentairesNoSignal = $commentaireManager->getListNoSignal();
-        $articleManager = new ArticleManager();
-        $articles = $articleManager->getList();
-        include(APP_ROOT . '/view/administration.php');
-        $html = ob_end_flush();
-        return $html;
+        if (isset($_SESSION['pseudo'])) {
+            ob_start();
+            $commentaireManager = new CommentairesManager();
+            $commentairesSignal = $commentaireManager->getListSignal();
+            $commentairesNoSignal = $commentaireManager->getListNoSignal();
+            $articleManager = new ArticleManager();
+            $articles = $articleManager->getList();
+            include(APP_ROOT . '/view/administration.php');
+            $html = ob_end_flush();
+            return $html;
+        } else {
+            header('location: index.php?action=connexion');
+        }
+        
     }
 
     public function supChapitre()
     {
-        require_once(APP_ROOT . '/model/ArticleManager.php');
         $articleManager = new ArticleManager();
         $return = $articleManager->delete($_GET['id']);
         header('location: index.php?action=admin');
@@ -69,24 +63,14 @@ class AdminController
 
     public function supCommentaire()
     {
-        require_once(APP_ROOT . '/model/CommentaireManager.php');
         $commentaireManager = new CommentairesManager();
         $return = $commentaireManager->delete($_GET['id']);
         header('location: index.php?action=admin');
         die;
     }
 
-    public function pageInscription()
-    {
-        ob_start();
-        include(APP_ROOT . '/view/inscription.php');
-        $html = ob_end_flush();
-        return $html;
-    }
-
     public function inscription()
     {
-        require_once(APP_ROOT . '/model/UtilisateurManager.php');
         $utilisateurManager = new UtilisateurManager();
         if (!empty($_POST)) {
             $valide = true;
@@ -127,6 +111,10 @@ class AdminController
                 die;
             }
         }
+        ob_start();
+        include(APP_ROOT . '/view/inscription.php');
+        $html = ob_end_flush();
+        return $html;
     }
 
     public function pageConfirmationInscription()
