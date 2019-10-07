@@ -36,7 +36,6 @@
                             <a class="signal" href="index.php?action=signalement&id=<?= $commentaire->getId(); ?>&idbillet=<?= $commentaire->getIdBillet(); ?>"><i class="fas fa-exclamation-triangle"></i>Signaler ce message</a>
                         </div>
                     <?php endforeach; ?>
-            
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 créer_commentaire">
                     <h2>Laisser un commentaire : </h2>

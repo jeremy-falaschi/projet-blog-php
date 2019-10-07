@@ -6,9 +6,7 @@ class ArticleController
     {
         ob_start();
         $articleManager = new ArticleManager();
-        $article = $articleManager->get($id);
         $commentaireManager = new CommentairesManager();
-        $commentaires = $commentaireManager->getList($id);
         if (!empty($_POST)) {
             $valide = true;
             if (empty($_POST['pseudo'])) {
@@ -28,6 +26,8 @@ class ArticleController
                 $commentaireManager->add($commentaire);
             }
         }
+        $article = $articleManager->get($id);
+        $commentaires = $commentaireManager->getList($id);
         include(APP_ROOT . '/view/article.php');
         $html = ob_end_flush();
         return $html;

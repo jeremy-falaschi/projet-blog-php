@@ -22,18 +22,16 @@
                     <?php if (isset($alerterror3)): ?>
                     <p class="block_alert"><?= $alerterror3; ?></p>
                     <?php endif; ?>
-                    <form action="index.php?action=checkinscription" method="POST">
+                    <form action="index.php?action=inscription" method="POST">
                         <input type="text" name="pseudo" placeholder="Pseudo" required><br/>
                         <input type="email" name="email" placeholder="Email" required><br/>
                         <input type="password" name="password" placeholder="Mot de passe" required><br/>
                         <input type="password" name="password2" placeholder="Confirmer mot de passe" required><br/>
                         <input type="submit" name="submit" value="envoyer">
                     </form>
-
                 </div>
             </div>
         </div>
-
     </section>
     <?php include("footer.php"); ?>    
 </body>
