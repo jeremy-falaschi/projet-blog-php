@@ -1,9 +1,9 @@
 <?php
 session_start();
 define('APP_ROOT', __DIR__);
-ini_set('display_errors', 1);/* a comprendre */
-ini_set('display_startup_errors', 1);/* a comprendre */
-error_reporting(E_ALL);/* a comprendre */
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once(APP_ROOT . '/DataBaseConnection.php');
 require_once(APP_ROOT . '/controller/ArticleController.php');
 require_once(APP_ROOT . '/controller/AdminController.php');
