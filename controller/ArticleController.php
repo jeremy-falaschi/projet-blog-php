@@ -7,6 +7,11 @@ class ArticleController
         ob_start();
         $articleManager = new ArticleManager();
         $commentaireManager = new CommentairesManager();
+        if(isset($_GET['article'])){
+            if(!($articleManager->get($id))){
+                header('Location: error.php');
+            }
+        }
         if (!empty($_POST)) {
             $valide = true;
             if (empty($_POST['pseudo'])) {
@@ -107,8 +112,19 @@ class ArticleController
     {
         ob_start();
         $commentaireManager = new CommentairesManager();
+        $articleManager = new ArticleManager();
+        if(isset($_GET['idbillet'])){
+            if(!($articleManager->get($_GET['idbillet']))){
+                header('Location: error.php');
+            }
+        }
+        if(isset($_GET['id'])){
+            if(!($commentaireManager->get($_GET['id']))){
+                header('Location: error.php');
+            }
+        }
         $return = $commentaireManager->signal($_GET['id']);
-        header('location: index.php?article=' . $_GET['idbillet']. '');
+        // header('location: index.php?article=' . $_GET['idbillet']. '');
         $html = ob_end_flush();
         return $html;
     }

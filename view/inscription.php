@@ -29,9 +29,11 @@
                         <input type="password" name="password2" placeholder="Confirmer mot de passe" required><br/>
                         <input type="submit" name="submit" value="envoyer">
                     </form>
+
                 </div>
             </div>
         </div>
+
     </section>
     <?php include("footer.php"); ?>    
 </body>

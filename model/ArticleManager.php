@@ -24,7 +24,12 @@ class ArticleManager
         $req->execute([
             $id
         ]);
-        return new Article($req->fetch());
+        $data = $req->fetch();
+        if($data){
+            return new Article($data);   
+        } else {
+            return false;
+        }
     }
 
     public function delete($id)

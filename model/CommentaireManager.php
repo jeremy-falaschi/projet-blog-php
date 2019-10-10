@@ -24,7 +24,12 @@ class CommentairesManager
         $req->execute([
             $id
         ]);
-        return new Commentaires($req->fetch());
+        $data = $req->fetch();
+        if($data){
+            return new Commentaires($data);
+        } else {
+            return false;
+        }
     }
 
     public function delete($id)

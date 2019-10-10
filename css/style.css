@@ -23,6 +23,7 @@ a {color: #ffffff !important;}
 .bloc_article {background: linear-gradient(#067790, #008080) !important; border-radius: 5px; margin-bottom: 30px; position: relative;}
 .bloc_article h2 {text-align: center; color: #fff;}
 .bloc_article .contenu {padding: 2% 5% 2% 5%; width: 99%; margin: auto; background-color: #d5d5d5; border-radius: 5px; max-height: 300px; overflow-y: hidden; text-align: justify;}
+.bloc_article .contenu p {background-color: #d5d5d5 !important;}
 .bloc_article .date_article {text-align: center; color: #fff;}
 .bloc_article .date_lien {display: flex; justify-content: space-between; padding: 0 10%;}
 .bloc_article:hover .overlay {visibility: visible;}
@@ -40,6 +41,7 @@ a {color: #ffffff !important;}
 .article {background: #008080; margin-top: 20px; border-radius: 5px;}
 .article > p {padding: 10px;}
 .contenu_article {background-color: #d5d5d5; width: 99%; border-radius: 5px; margin: 0 auto 30px; padding: 2%;}
+.contenu_article p {background-color: #d5d5d5 !important;}
 a.signal {color: rgb(145, 11, 11) !important;}
 
 
@@ -73,6 +75,10 @@ footer {background: linear-gradient(#067790, #008080) !important; position: rela
 footer .bloc_footer {text-align: center;}
 footer {color: #fff;}
 
+
+/*page 404*/
+
+.txt_error {text-align: center; margin: auto; font-weight: bold; margin-top: 50px;}
 
 @media screen and (max-width: 1300px)
 {
