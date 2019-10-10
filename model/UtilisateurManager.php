@@ -24,6 +24,11 @@ class UtilisateurManager
         $req->execute([
             $email
         ]);
-        return new Utilisateur($req->fetch());
+        $data = $req->fetch();
+        if($data){
+            return new Utilisateur($data);
+        }else{
+            return false;
+        }
     }
 }

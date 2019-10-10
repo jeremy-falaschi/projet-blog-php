@@ -124,7 +124,7 @@ class ArticleController
             }
         }
         $return = $commentaireManager->signal($_GET['id']);
-        // header('location: index.php?article=' . $_GET['idbillet']. '');
+        header('location: index.php?article=' . $_GET['idbillet']. '');
         $html = ob_end_flush();
         return $html;
     }

@@ -48,12 +48,12 @@ class Commentaires
 
     public function getPseudo()
     {
-        return htmlspecialchars($this->pseudo);
+        return $this->pseudo;
     }
 
     public function getCommentaire()
     {
-        return htmlspecialchars($this->commentaire);
+        return $this->commentaire;
     }
 
     public function getDateMessage()

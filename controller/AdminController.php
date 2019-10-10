@@ -7,20 +7,24 @@ class AdminController
     {
         if (!empty($_POST)) {
             $email = $_POST['email'];
-            $utilisateurManager = new utilisateurManager();
-            $utilisateur = $utilisateurManager->get($email);
             if (empty($_POST['email'])) {
                 $alerterror4 = 'Veuillez entrer votre adresse mail';
-            }
-            if (empty($_POST['password'])) {
-                $alerterror4 = 'Vous devez saisir un mot de passe';
-            }
-            if (!password_verify($_POST['password'], $utilisateur->getMdp())) {
-                $alerterror4 = 'Mot de passe érroné';
             } else {
-                $_SESSION['pseudo'] = $utilisateur->getPseudo();
-                header('location: index.php');
-                die;
+                $utilisateurManager = new utilisateurManager();
+                $utilisateur = $utilisateurManager->get($email);
+                if(!$utilisateur) {
+                    $alerterror4 = 'adresse mail non reconnue';
+                } else {
+                    if (empty($_POST['password'])) {
+                        $alerterror4 = 'Vous devez saisir un mot de passe';
+                    } elseif (!password_verify($_POST['password'], $utilisateur->getMdp())) {
+                        $alerterror4 = 'Mot de passe érroné';
+                    }else{
+                        $_SESSION['pseudo'] = $utilisateur->getPseudo();
+                        header('location: index.php');
+                        die;
+                    }
+                } 
             }
         }
         ob_start();
