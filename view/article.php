@@ -33,10 +33,13 @@
                             <p class="pseudo"><?= htmlspecialchars($commentaire->getPseudo()); ?> :</p>
                             <p class="date_message">Le <?= $commentaire->getDateMessage(); ?> ,</p>
                             <p class="message"><?= htmlspecialchars($commentaire->getCommentaire()); ?></p>
-                            <a class="signal" href="index.php?action=signalement&id=<?= $commentaire->getId(); ?>&idbillet=<?= $commentaire->getIdBillet(); ?>"><i class="fas fa-exclamation-triangle"></i>Signaler ce message</a>
+                            <?php if($commentaire->getSignalement() == 0) : ?>
+                                <a class="signal" href="index.php?action=signalement&id=<?= $commentaire->getId(); ?>&idbillet=<?= $commentaire->getIdBillet(); ?>"><i class="fas fa-exclamation-triangle"></i>Signaler ce message</a>
+                            <?php else : ?>
+                                <p style="color: red;"> Ce commentaire a été signalé !</p>
+                            <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
-            
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 créer_commentaire">
                     <h2>Laisser un commentaire : </h2>

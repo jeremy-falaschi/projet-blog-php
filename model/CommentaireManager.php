@@ -54,7 +54,7 @@ class CommentairesManager
     public function getList($idBillet)
     {
         $commentaires = [];
-        $req = $this->db->prepare("SELECT id, pseudo, commentaire, idbillet, DATE_FORMAT(date_message, '%d/%m/%Y à %Hh%imin%ss') AS date_message FROM commentaires WHERE idbillet = ?");
+        $req = $this->db->prepare("SELECT id, pseudo, commentaire, idbillet, signalement, DATE_FORMAT(date_message, '%d/%m/%Y à %Hh%imin%ss') AS date_message FROM commentaires WHERE idbillet = ?");
         $req->execute([
             $idBillet
         ]);
