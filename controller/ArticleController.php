@@ -49,7 +49,6 @@ class ArticleController
     public function newArticle()
     {
         ob_start();
-        require_once(APP_ROOT . '/model/ArticleManager.php');
         $articleManager = new ArticleManager;
         if (!empty($_POST)) {
             $valide = true;
