@@ -41,19 +41,24 @@ class AdminController
 
     public function admin()
     {
-        if (isset($_SESSION['pseudo'])) {
-            ob_start();
-            include(APP_ROOT . '/view/administration.php');
-            $html = ob_end_flush();
-            return $html;
-        } else {
+        if (!isset($_SESSION['pseudo'])) {
             header('location: index.php?action=connexion');
+            die;
         }
+        ob_start();
+        include(APP_ROOT . '/view/administration.php');
+        $html = ob_end_flush();
+        return $html;
+        
         
     }
 
     public function adminSignal()
     {
+        if (!isset($_SESSION['pseudo'])) {
+            header('location: index.php?action=connexion');
+            die;
+        }
         ob_start();
         $commentaireManager = new CommentairesManager();
         $commentairesSignal = $commentaireManager->getListSignal();
@@ -64,6 +69,10 @@ class AdminController
 
     public function adminNoSignal()
     {
+        if (!isset($_SESSION['pseudo'])) {
+            header('location: index.php?action=connexion');
+            die;
+        }
         ob_start();
         $commentaireManager = new CommentairesManager();
         $commentairesNoSignal = $commentaireManager->getListNoSignal();
@@ -74,6 +83,10 @@ class AdminController
 
     public function adminChap()
     {
+        if (!isset($_SESSION['pseudo'])) {
+            header('location: index.php?action=connexion');
+            die;
+        }
         ob_start();
         $articleManager = new ArticleManager();
         $articles = $articleManager->getList();
