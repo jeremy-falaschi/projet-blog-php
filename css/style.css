@@ -65,6 +65,11 @@ a.signal {color: rgb(145, 11, 11) !important;}
 
 .admin .row {margin: auto;}
 .admin h1 {margin: 20px auto;}
+.liens-admin {width: 100%; display: flex; margin-top: 50px;}
+.lien-admin {background-color: #067790; padding: 50px 20px; text-align: center; width: 32%; margin: auto;}
+.lien-admin:hover {background-color: #008080; text-decoration: none;}
+.back-admin {background-color: #067790; padding: 5px 10px; border-radius: 5px;}
+.back-admin:hover { text-decoration: none; background-color: #008080;}
 table .fas {margin-left: 10px; padding: 5px; border-radius: 5px; background-color: #ffffff; color: #000000;}
 table.table-dark {background-color: #067790 !important;}
 .table-dark td, .table-dark th, .table-dark thead th {border-color: #067790 !important;}
@@ -88,12 +93,16 @@ footer {color: #fff;}
 @media screen and (max-width: 991px)
 {
     .bloc_inscription {width: 80%;}
+    .lien_resp {display: block;}
+    .liens-admin {flex-direction: column; margin: 0 20px;}
+    .lien-admin {width: 100%; margin-top: 20px;}
 }
 
 @media screen and (max-width: 480px)
 {
+    .bloc_connexion {width: 90%;}
     .container {padding: 0 !important; margin: 0 !important;}
-    .row {margin: 00 !important;}
-    .lien_resp {display: block;}
+    .row {margin: 0 !important;}
     td, th, tr {font-size: 10px; padding: 0.3rem !important;}
+    .back-admin {font-size: 12px;}
 }

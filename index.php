@@ -30,6 +30,15 @@ if (empty($_SERVER['QUERY_STRING'])) {
         case 'admin':
             $adminController->admin();
             break; 
+        case 'admin_signal':
+            $adminController->adminSignal();
+            break;
+        case 'admin_no_signal':
+            $adminController->adminNoSignal();
+            break; 
+        case 'admin_chap':
+            $adminController->adminChap();
+            break;              
         case 'supchap':
             $adminController->supChapitre();
             break;

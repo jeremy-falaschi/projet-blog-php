@@ -43,11 +43,6 @@ class AdminController
     {
         if (isset($_SESSION['pseudo'])) {
             ob_start();
-            $commentaireManager = new CommentairesManager();
-            $commentairesSignal = $commentaireManager->getListSignal();
-            $commentairesNoSignal = $commentaireManager->getListNoSignal();
-            $articleManager = new ArticleManager();
-            $articles = $articleManager->getList();
             include(APP_ROOT . '/view/administration.php');
             $html = ob_end_flush();
             return $html;
@@ -55,6 +50,36 @@ class AdminController
             header('location: index.php?action=connexion');
         }
         
+    }
+
+    public function adminSignal()
+    {
+        ob_start();
+        $commentaireManager = new CommentairesManager();
+        $commentairesSignal = $commentaireManager->getListSignal();
+        include(APP_ROOT . '/view/admin-signal.php');
+        $html = ob_end_flush();
+        return $html;
+    }
+
+    public function adminNoSignal()
+    {
+        ob_start();
+        $commentaireManager = new CommentairesManager();
+        $commentairesNoSignal = $commentaireManager->getListNoSignal();
+        include(APP_ROOT . '/view/admin-no-signal.php');
+        $html = ob_end_flush();
+        return $html;
+    }
+
+    public function adminChap()
+    {
+        ob_start();
+        $articleManager = new ArticleManager();
+        $articles = $articleManager->getList();
+        include(APP_ROOT . '/view/admin-chapitre.php');
+        $html = ob_end_flush();
+        return $html;
     }
 
     public function supChapitre()

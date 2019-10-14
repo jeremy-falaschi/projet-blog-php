@@ -18,80 +18,11 @@
             <div class="container">
                 <div class="row">
                     <h1>Administration du blog</h1>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <h2>Commentaires signalé</h2>
-                        <table class="table table-striped table-dark">
-                            <thead>
-                                <tr>
-                                <th scope="col">Chapitre</th>
-                                <th scope="col">Pseudo</th>
-                                <th scope="col">Commentaire</th>
-                                <th scope="col">Publié le:</th>
-                                <th scope="col">Gestion</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach ($commentairesSignal as $signal): ?>
-                                <tr>
-                                <th scope="row"><?= $signal->getIdBillet(); ?></th>
-                                <td><?= $signal->getPseudo(); ?></td>
-                                <td><?= $signal->getCommentaire(); ?></td>
-                                <td><?= $signal->getDateMessage(); ?></td>
-                                <td><a href="index.php?action=supcomment&id=<?= $signal->getId(); ?>"><i class="fas fa-trash-alt"></i></a></td>
-                                </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                    <div class="liens-admin">
+                        <a class="lien-admin" href="index.php?action=admin_signal">Commentaires signalé</a>
+                        <a class="lien-admin" href="index.php?action=admin_no_signal">Commentaires</a>
+                        <a class="lien-admin" href="index.php?action=admin_chap">Chapitres</a>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <h2>Commentaires</h2>
-                        <table class="table table-striped table-dark">
-                            <thead>
-                                <tr>
-                                <th scope="col">Chapitre</th>
-                                <th scope="col">Pseudo</th>
-                                <th scope="col">Commentaire</th>
-                                <th scope="col">Publié le:</th>
-                                <th scope="col">Gestion</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach ($commentairesNoSignal as $noSignal): ?>
-                                <tr>
-                                <th scope="row"><?= $noSignal->getIdBillet(); ?></th>
-                                <td><?= $noSignal->getPseudo(); ?></td>
-                                <td><?= $noSignal->getCommentaire(); ?></td>
-                                <td><?= $noSignal->getDateMessage(); ?></td>
-                                <td><a href="index.php?action=supcomment&id=<?= $noSignal->getId(); ?>"><i class="fas fa-trash-alt"></i></a></td>
-                                </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <h2>Chapitres</h2>
-                        <table class="table table-striped table-dark">
-                            <thead>
-                                <tr>
-                                <th scope="col">Chapitre</th>
-                                <th scope="col">Titre</th>
-                                <th scope="col">Publié le:</th>
-                                <th scope="col">Gestion</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach ($articles as $article): ?>
-                                <tr>
-                                <th scope="row"><?= $article->getId(); ?></th>
-                                <td><?= $article->getTitre(); ?></td>
-                                <td><?= $article->getDateArticle(); ?></td>
-                                <td><a href="index.php?action=affichemodifchap&id=<?= $article->getId(); ?>"><i class="fas fa-pen"></i></a><a href="index.php?action=supchap&id=<?= $article->getId(); ?>"><i class="fas fa-trash-alt"></i></a></td>
-                                </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    
                 </div>
             </div>
         </section>
